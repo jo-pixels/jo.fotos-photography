@@ -59,6 +59,7 @@ body {
   font-weight: 300;
   min-height: 100vh;
   transition: background .3s, color .3s;
+  touch-action: manipulation;
 }
 
 nav {
@@ -248,7 +249,6 @@ nav.scrolled { border-color: var(--border); }
   border-radius: 50%;
   transition: background .2s, transform .15s;
   z-index: 1010;
-  touch-action: manipulation;
 }
 .lb-arrow:hover { background: rgba(255,255,255,.15); transform: translateY(-50%) scale(1.07); }
 .lb-arrow.prev { left: 16px; }
