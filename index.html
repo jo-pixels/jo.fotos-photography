@@ -332,15 +332,13 @@ nav.scrolled { border-color: var(--border); }
   white-space: nowrap;
 }
 .lb-exif-row span:last-child { color: rgba(255,255,255,.9); }
+.lb-exif-row.camera, .lb-exif-row.camera-plain { white-space: normal; }
+.lb-exif-row.camera span:last-child, .lb-exif-row.camera-plain span:last-child { text-align: right; }
 .lb-exif-row.camera {
-  white-space: normal;
   border-bottom: 1px solid rgba(255,255,255,.14);
   padding-bottom: 7px;
   margin-bottom: 4px;
 }
-.lb-exif-row.camera span:last-child { text-align: right; }
-.lb-exif-row.camera-plain { white-space: normal; }
-.lb-exif-row.camera-plain span:last-child { text-align: right; }
 
 .status {
   display: flex;
@@ -819,10 +817,6 @@ nav.scrolled { border-color: var(--border); }
     if (f == null || isNaN(f)) return null;
     return `f/${f % 1 === 0 ? f : f.toFixed(1)}`;
   }
-  function formatISO(iso) {
-    if (iso == null) return null;
-    return `ISO ${iso}`;
-  }
   function formatFocal(fl) {
     if (fl == null || isNaN(fl)) return null;
     return `${fl % 1 === 0 ? fl : fl.toFixed(1)}mm`;
@@ -894,7 +888,6 @@ nav.scrolled { border-color: var(--border); }
       const lens = formatLens(data.LensMake, data.LensModel);
       const shutter = formatShutter(data.ExposureTime);
       const aperture = formatAperture(data.FNumber);
-      const iso = formatISO(data.ISO);
       const focal = formatFocal(data.FocalLength);
       const flash = formatFlash(data.Flash);
 
@@ -902,7 +895,7 @@ nav.scrolled { border-color: var(--border); }
       if (lens) fields.push(['Lens', lens]);
       if (shutter) fields.push(['Shutter', shutter]);
       if (aperture) fields.push(['Aperture', aperture]);
-      if (iso) fields.push(['ISO', data.ISO]);
+      if (data.ISO != null) fields.push(['ISO', data.ISO]);
       if (focal) fields.push(['Focal Length', focal]);
       if (flash) fields.push(['Flash', flash]);
 
